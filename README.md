@@ -20,3 +20,5 @@ python manage.py runserver
 localhost:8000 in browser
 
 for admin access: localhost:8000/admin
+-----------------------------------------------------
+asasaasa
