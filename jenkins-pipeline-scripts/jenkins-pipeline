@@ -1,0 +1,42 @@
+properties([disableConcurrentBuilds()])
+pipeline {
+    agent { 
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages{
+        stage('Docker-build ') { // for display purposes
+            steps{
+                echo "Enter word...."
+                echo "Enter number..."
+                echo "Good build"
+                echo " ============== start building image =================="
+                dir ('jenkins-pipeline-scripts/') {
+                	sh 'docker build -t jenkins:latest . '
+                }
+            }
+        }
+        stage('Docker run') {
+            steps {
+                echo "Good Test"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                ssh pussy@192.168.0.188
+                pwd
+                echo "Good Test `pwd`"
+                touch file1.txt
+                echo "Good Test touch"
+                echo "Hello" >> file1.txt
+                echo "Good Test write file1.txt"
+                python --version
+                '''
+            }
+        }
+    }
+}
