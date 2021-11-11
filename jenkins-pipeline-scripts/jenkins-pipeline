@@ -1,5 +1,6 @@
 properties([disableConcurrentBuilds()])
 pipeline {
+//accesses the git master branch
     agent { 
         label 'master'
     	}
@@ -7,6 +8,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
+//builds dockerfile
     stages{
         stage('Docker-build ') { // for display purposes
             steps{
@@ -19,6 +21,7 @@ pipeline {
                 }
             }
         }
+//build image in dockerhub
         stage("docker push") {
             steps {
                 echo " ============== start pushing image =================="
@@ -27,6 +30,7 @@ pipeline {
                 '''
             }
         }
+//run image
         stage('Docker run') {
             steps {
 		dir ('project/') {
