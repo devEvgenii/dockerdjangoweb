@@ -14,7 +14,7 @@ pipeline {
                 echo "Enter number..."
                 echo "Good build"
                 echo " ============== start building image =================="
-                dir ('jenkins-pipeline-scripts/') {
+                dir ('project/') {
                 	sh 'docker build -t jenkins:latest . '
                 }
             }
@@ -26,16 +26,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh '''
-                ssh pussy@192.168.0.188
-                pwd
-                echo "Good Test `pwd`"
-                touch file1.txt
-                echo "Good Test touch"
-                echo "Hello" >> file1.txt
-                echo "Good Test write file1.txt"
-                python --version
-                '''
+		echo "test deploy ====================="
             }
         }
     }
