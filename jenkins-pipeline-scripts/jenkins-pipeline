@@ -15,7 +15,7 @@ pipeline {
                 echo "Good build"
                 echo " ============== start building image =================="
                 dir ('project/') {
-                	sh 'docker build -t jenkins:latest . '
+                	sh 'docker build -t sevgeniiproject/jenkins:latest . '
                 }
             }
         }
