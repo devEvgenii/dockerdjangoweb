@@ -34,6 +34,16 @@ pipeline {
 		}
             }
         }
+//deleting old running containers
+        stage('del image') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                sh '''
+                docker stop jenkins-pipeline-scripts/jenkins:latest; docker rm jenkins-pipeline-scripts/jenkins:latest; docker image prune -f"
+                '''
+                }
+            } 
+        }
 //run image
         stage('Docker run') {
             steps {
