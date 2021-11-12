@@ -35,7 +35,7 @@ pipeline {
             }
         }
 //deleting old running containers
-        stage('delete image') {
+        stage("delete image") {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh '''
