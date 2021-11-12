@@ -35,11 +35,11 @@ pipeline {
             }
         }
 //deleting old running containers
-        stage('del image') {
+        stage('delete image') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh '''
-                docker stop jenkins-pipeline-scripts/jenkins:latest; docker rm jenkins-pipeline-scripts/jenkins:latest; docker image prune -f"
+                docker stop sevgeniiproject/jenkins:latest; docker rm jenkins-pipeline-scripts/jenkins:latest; docker image prune -f"
                 '''
                 }
             } 
