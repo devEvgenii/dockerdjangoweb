@@ -34,16 +34,6 @@ pipeline {
 		}
             }
         }
-//deleting old running containers
-        stage("delete image") {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh '''
-                docker stop sevgeniiproject/jenkins:latest; docker rm sevgeniiproject/jenkins:latest; docker image prune -f"
-                '''
-                }
-            } 
-        }
 //run image
         stage('Docker run') {
             steps {
