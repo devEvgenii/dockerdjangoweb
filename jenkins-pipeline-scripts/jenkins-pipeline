@@ -38,7 +38,7 @@ pipeline {
         stage("delete image") {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh 'docker stop jenkins:latest; docker rm jenkins:latest; docker image prune -f'
+                sh 'docker stop jenkins; docker rm jenkins; docker image prune -f'
                 }
             }
         }
